@@ -1,0 +1,38 @@
+#include <iostream>
+#include <vector>
+using namespace std;
+
+vector<vector<int>> graph;
+vector<bool> visited;
+
+void DFS(int node)
+{
+    visited[node] = true;
+    cout << node << " ";
+
+    for (int neighbor : graph[node])
+    {
+        if (!visited[neighbor])
+        {
+            DFS(neighbor);
+        }
+    }
+}
+
+int main()
+{
+    int vertices = 5;
+
+    graph.resize(vertices);
+    visited.resize(vertices, false);
+
+    graph[0].push_back(1);
+    graph[0].push_back(3);
+    graph[1].push_back(2);
+    graph[1].push_back(4);
+
+    cout << "DFS Traversal: ";
+    DFS(0);
+
+    return 0;
+}
